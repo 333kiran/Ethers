@@ -1,5 +1,15 @@
 import Web3 from 'web3';
 
+// // Use MetaMask's provider
+// let web3;
+// if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined') {
+//   web3 = new Web3(window.ethereum);
+// } else {
+//   console.error('No MetaMask provider detected.');
+//   process.exit(1);
+// }
+
+
 //my credentials
 const accountAddress = "0xbFB625af1C73d65193f7FE99Ae7B76A39b9802F9";
 const privateKey = "bb163bf7616a0f878389f3c50f00cea8ab01b2f8687f216db246a6f4457d88a1";
@@ -14,9 +24,14 @@ const contractABI = [{"inputs":[{"internalType":"uint256","name":"_withdrawTimel
 
 //web3 instance
 const web3 = new Web3(
-  "https://goerli.infura.io/v3/679049d887954c7a8abf638550e5029e"
+  // "https://goerli.infura.io/v3/679049d887954c7a8abf638550e5029e"
+  // "https://goerli.infura.io/v3/6a63513f935a4c5f9cecee0925bffeef"
+  // "https://goerli.infura.io/v3/8f2ddffaa7ac43699e449193af433380"
+  // "https://goerli.infura.io/v3/adae6f2a435045388027676bb8c40255"
+  "https://eth-goerli.g.alchemy.com/v2/FY6v6wiFV_4tFlDTVQsWffDqRaLagTAO"
   
 );
+
 
 //token contract instance
 const tokenContract = new web3.eth.Contract(tokenABI,tokenAddress);
@@ -61,6 +76,49 @@ export const approvalMethod = async(req,res) => {
         res.status(500).json({ error: error.message });
   }
 }
+
+// export const depositMethod = async(req,res) => {
+//   try{
+//     const {tokenAdd,amount} = req.body;
+//     // const wardAmount = web3.utils.toBN(amount);
+//     const amountInWei = web3.utils.toWei(amount.toString(),'ether');
+//     console.log("wei amount =>",amountInWei);
+
+//    // Estimating the gas required for the transaction
+// const gasLimit = await contract.methods.depositToken(tokenAdd,amountInWei).estimateGas(accountAddress);
+
+// // Retrieve the current gas price
+// const gasPrice = await web3.eth.getGasPrice();
+
+// const transactionData = contract.methods.depositToken(tokenAdd,amountInWei).encodeABI();
+
+// const transactionObject = {
+//   from: accountAddress,
+//   to: contractAddress,
+//   gas: gasLimit,
+//   gasPrice: gasPrice,
+//   data: transactionData
+//   // value: amountInWei,
+// };
+
+// const signedTx = await web3.eth.accounts.signTransaction(transactionObject, privateKey);
+// console.log(" signedTx =>",signedTx);
+
+// // Send the signed transaction
+// const receipt = await web3.eth.sendSignedTransaction(signedTx.rawTransaction);
+// console.log(" receipt =>",receipt);
+
+// res.status(200).json({ message: 'Tokens deposited successfully', txHash: receipt.transactionHash });
+
+//   }catch(error){
+//     console.log(error);
+//         res.status(500).json({ error: error.message });
+//   }
+// }
+
+
+
+//
 
 export const depositMethod = async (req, res) => {
   try {
