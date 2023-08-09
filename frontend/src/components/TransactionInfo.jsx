@@ -1,7 +1,7 @@
 // TransactionInfo.js
 import React, { useState } from 'react';
 import axios from 'axios';
-import './TransactionInfo.css';
+import '../styles/TransactionInfo.css';
 
 const TransactionInfo = () => {
   const [transactionInfo, setTransactionInfo] = useState(null);

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
-import './Deposit.css';
+import '../styles/Deposit.css';
 
 const Deposit = () => {
   const [tokenAddress, setTokenAddress] = useState('');
